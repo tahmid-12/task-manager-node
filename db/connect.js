@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const connectstring = 'mongodb://localhost:27017/Store';
+// const connectstring = 'mongodb://localhost:27017/Store';
 
 
 const connectDB = (url) => {
     return (
-        mongoose.connect(connectstring)
+        mongoose.connect(url)
     )
 }
 
