@@ -20,9 +20,19 @@ const createTask = async (req, res) => {
     // res.send(req.body)
 }
 
-const getTask = (req, res) => {
-    // res.send('Get task')
-    res.json({ id: req.params.id })
+const getTask = async (req, res) => {
+    try{
+        const { id: taskID } = req.params;
+        const task = await Task.findOne({ _id: taskID })
+
+        if(!task){
+            return res.status(404).json({ message: `Task Not Avaialble with ${taskID}`})
+        }
+
+        res.status(200).json({ task })
+    }catch(error){
+        res.status(500).json({ message: error })
+    }
 }
 
 const updateTask = (req, res) => {
